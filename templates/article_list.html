@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Postlar{% endblock title %}
+
+{% block content %}
+    <section class="p-5 tm-container-outer tm-bg-gray">            
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">   
+                    {% if user.is_authenticated %}     
+                      
+                    <h2 class=" mb-4">Assalomu alaykum <strong>{{ user.username | title }}</strong> </h2>
+                    <p class="ml-auto">
+                        <a class="btn btn-primary ml-4" href="{% url 'article_new' %}">Yangi post</a>
+                                                    
+                        <a class="btn btn-primary ml-4" href="{% url 'password_change'%}">Kalit so'zni almashtirish</a>
+                        
+                        <a class="btn btn-primary ml-4" href="{% url 'logout' %}">Chiqib ketish</a>
+                    </p>
+                    {% else %}
+                        <h3 class=" mb-4">Assalomu alaykum. Siz o'z maqolangizni qo'shish uchun tizimga kiring yoki ro'yxatdan o'ting </h3>
+                        <p class="ml-auto" >
+
+                                    <form class="form-inline ml-auto" >
+                                        <a href="{% url 'login' %}" class="btn btn-primary" style="margin-left:40vh">Kirish</a>
+                                        <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Ro'yxatdan o'tish</a>
+                                    </form>
+{% comment %}                                            
+                    <a href="{% url 'login' %}" class="text-uppercase btn-primary tm-btn">Kirish</a>                              
+                    <a href="{% url 'signup' %}" class="text-uppercase btn-primary tm-btn">Ro'yxatdan o'tish</a>   {% endcomment %}
+                </p>
+
+                    {% endif %}   
+                </div>
+            </div>
+        </div>            
+    </section>
+    
+<div class="tm-page-wrap mx-auto m-2 p-3" id="tm-section-2" >
+
+    {% for article in object_list %}
+
+    {% if article.position == "right" %}
+        <section class="tm-slideshow-section">
+            <div class="tm-slideshow">
+                <img src="{{ article.photo.url }}" alt="Image" style="width:90vh; height:60vh">
+            </div>
+            <div class="tm-slideshow-description tm-bg-primary">
+                <a href="{% url 'article_detail' article.pk %}">
+                    <h2 class="tm-btn-white-highlight" style="color:primary">{{ article.title }}</h2>
+                </a>
+                <p style="font-size:15px"> {{ article.summary }}...  <a href="{% url 'article_detail' article.pk %} " class="tm-text-highlight">batafsil o'qing</a></p>
+                <div class="card-footer text-left text-muted">
+                    <span class="text-white">Muallif: {{ article.author | title }} &middot; {{ article.date }}</span>
+                </div>
+              
+            </div>
+        </section>
+    {% else %}
+
+        <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse">
+
+            <div class="tm-right tm-slideshow tm-slideshow-highlight">
+                <img src="{{ article.photo.url }}" alt="Image" style="width:90vh; height:60vh">
+            </div> 
+
+            <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight">
+                <a href="{% url 'article_detail' article.pk %}">
+                <h2 class="tm-btn-white-primary" style="color:primary">{{ article.title }}</h2>
+            </a>
+                <p style="font-size:15px"> {{ article.summary }}...  <a href="{% url 'article_detail' article.pk %} " class="tm-btn-white-primary">batafsil o'qing</a></p>
+                <div class="card-footer text-left text-muted">
+                    <span class="text-white">Muallif: {{ article.author | title }} &middot; {{ article.date }}</span>
+                </div>
+              
+            </div>                        
+
+        </section>
+{% endif%}
+        {% endfor %}
+    </div> 
+
+{% comment %} 
+        <div class="card container" style="width: 50rem;" >
+            <div class="card-header">
+                <span class="font-weight-bold"><a href="{% url 'article_detail' article.pk %}"><h2>{{ article.title }}</h2></a></span>
+            </div>
+            {% if article.photo %}
+                <img class="card-img-top" src="{{ article.photo.url }}" alt="{{ article.title }}">
+            {%  endif %}
+            <div class="card-body">
+                {{ article.summary }}...<a href="{% url 'article_detail' article.pk %}">batafsil</a>
+            </div>
+            <div class="card-footer text-left text-muted">
+                <span class="text-muted">muallif {{ article.author | title }} &middot; {{ article.date }}</span>
+            </div> 
+ {% endcomment %}
+
+        
+    
+   
+{% endblock content %}

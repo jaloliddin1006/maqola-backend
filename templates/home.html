@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+
+{% block content %}
+    
+<div class="tm-page-wrap mx-auto ">
+    <section class="tm-banner" >
+        <div class="tm-container-outer tm-banner-bg">
+            <div class="container">
+
+                <div class=" tm-banner-row tm-banner-row-header" >
+                    <div class="col-xs-12">
+                        <div class="tm-banner-header mt-5">
+                            <h1 class="text-uppercase tm-banner-title pt-5">Assalom alaykum!</h1>
+                            
+                            <p class="tm-banner-subtitle">Jaloliddin Mamatmusayevning shaxsiy blogiga xush kelibsiz.</p>
+                            
+                            <p class="lead">Bu yerda siz dasturlash va dasturchilarga oid so'nggi yangiliklar va maqolalardan xabardor bo'lib turasiz.</p>
+                           
+                            <p class="lead">
+                                <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}" role="button">Maqolalarni ko'rish</a>
+                            </p>    
+                        </div>    
+                    </div>  <!-- col-xs-12 -->                      
+                </div> <!-- row -->
+                
+                <div class="tm-banner-overlay"></div>
+            </div>  <!-- .container -->                   
+        </div>     <!-- .tm-container-outer -->                 
+    </section>
+
+    {% comment %} <div class="jumbotron" style="padding:16.5vh">
+        <h1 class="display-4">Assalom alaykum!</h1>
+        <p class="lead">Jaloliddin Mamatmusayevning shaxsiy blogiga xush kelibsiz.</p>
+        <hr class="my-4">
+        <p>Bu yerda siz dasturlash va dasturchilarga oid so'nggi yangiliklardan xabardor bo'lib turasiz.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}" role="button">Postlarni ko'rish</a>
+        </p>
+    </div> {% endcomment %}
+{% endblock content %}

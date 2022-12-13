@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid container" style="padding:25vh 55vh; ">
+    <h1>Postni o'chirish</h1>
+        <form action="" method="post" class="container">{% csrf_token %}
+        <p>"{{ article.title }}" nomli postni o'chirishni istaysizmi?</p>
+        <button class="btn btn-success ml-2" type="submit">Ha</button>
+        {% comment %} <button class="btn btn-danger ml-2" type="btn">Yo'q</button> {% endcomment %}
+        <a href="{% url 'article_list' %}" class="btn btn-danger ml-2">Yo'q</a>
+    </form>
+</div>
+{% endblock content %}
